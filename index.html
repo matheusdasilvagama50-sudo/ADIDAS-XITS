@@ -1,121 +1,236 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <title>Auxílio AdidasUI</title>
-  <style>
-    body {
-      margin: 0;
-      overflow: hidden;
-      background: black;
-      font-family: Arial, sans-serif;
-      color: white;
-    }
+<meta charset="UTF-8">
+<title>AUXÍLIO ADIDAS</title>
 
-    canvas {
-      position: fixed;
-      top: 0;
-      left: 0;
-      z-index: 0;
-    }
+<style>
+body {
+  margin: 0;
+  background: black;
+  font-family: Arial;
+  overflow: hidden;
+}
 
-    .container {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      z-index: 1;
-      text-align: center;
-      background: rgba(0, 0, 0, 0.8);
-      padding: 30px;
-      border-radius: 20px;
-      border: 2px solid red;
-      box-shadow: 0 0 25px red;
-      width: 300px;
-    }
+/* MATRIX */
+canvas {
+  position: fixed;
+  z-index: 0;
+}
 
-    h1 {
-      color: #ff4d4d;
-      letter-spacing: 3px;
-    }
+/* LOGIN */
+.login {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #000;
+  border: 2px solid red;
+  box-shadow: 0 0 20px red;
+  padding: 30px;
+  border-radius: 20px;
+  text-align: center;
+}
 
-    input {
-      width: 100%;
-      padding: 12px;
-      margin-top: 15px;
-      border-radius: 25px;
-      border: none;
-      outline: none;
-      background: #111;
-      color: white;
-      text-align: center;
-    }
+.login input {
+  padding: 10px;
+  border-radius: 20px;
+  border: none;
+  margin-top: 10px;
+}
 
-    button {
-      margin-top: 15px;
-      width: 100%;
-      padding: 12px;
-      border-radius: 25px;
-      border: none;
-      background: red;
-      color: white;
-      font-weight: bold;
-      cursor: pointer;
-      box-shadow: 0 0 15px red;
-      transition: 0.3s;
-    }
+.login button {
+  margin-top: 10px;
+  padding: 10px;
+  border: none;
+  background: red;
+  color: white;
+  border-radius: 20px;
+}
 
-    button:hover {
-      box-shadow: 0 0 30px red;
-      transform: scale(1.05);
-    }
-  </style>
+/* APP */
+.app {
+  display: none;
+}
+
+.box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #120000;
+  border: 2px solid red;
+  box-shadow: 0 0 25px red;
+  border-radius: 20px;
+  width: 300px;
+  padding: 20px;
+}
+
+/* MENU */
+.menu {
+  position: absolute;
+  left: -50px;
+  top: 20px;
+}
+
+.menu div {
+  margin: 10px 0;
+  width: 30px;
+  height: 30px;
+  background: #300;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+/* TABS */
+.tab {
+  display: none;
+}
+
+.tab.active {
+  display: block;
+}
+
+.toggle {
+  background: #300;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 20px;
+}
+
+.slider {
+  width: 100%;
+}
+
+.btn {
+  background: red;
+  padding: 10px;
+  margin: 10px 0;
+  text-align: center;
+  border-radius: 20px;
+  cursor: pointer;
+}
+</style>
 </head>
+
 <body>
 
 <canvas id="matrix"></canvas>
 
-<div class="container">
-  <h1>CENTRAL HACK</h1>
-  <input type="text" placeholder="Digite sua key">
-  <button onclick="alert('Acesso liberado (fake 😎)')">ENTRAR</button>
+<!-- LOGIN -->
+<div class="login" id="login">
+  <h2 style="color:red">AUXÍLIO ADIDAS</h2>
+  <input id="key" placeholder="Digite sua key">
+  <br>
+  <button onclick="entrar()">ENTRAR</button>
+</div>
+
+<!-- APP -->
+<div class="app" id="app">
+  <div class="box">
+
+    <div class="menu">
+      <div onclick="trocar(0)"></div>
+      <div onclick="trocar(1)"></div>
+      <div onclick="trocar(2)"></div>
+      <div onclick="trocar(3)"></div>
+      <div onclick="trocar(4)"></div>
+      <div onclick="trocar(5)"></div>
+    </div>
+
+    <!-- AIMBOT -->
+    <div class="tab active">
+      <h3 style="color:red">AIMBOT</h3>
+      <div class="toggle">Aimbot 89%</div>
+      <div class="toggle">Aumentar Precisão</div>
+      <input type="range" class="slider">
+    </div>
+
+    <!-- ARMA -->
+    <div class="tab">
+      <h3 style="color:red">ARMA</h3>
+      <div class="toggle">Sem Recuo</div>
+      <div class="toggle">Precisão Avançada</div>
+    </div>
+
+    <!-- DIVERSOS -->
+    <div class="tab">
+      <h3 style="color:red">DIVERSOS</h3>
+      <div class="toggle">120 FPS</div>
+      <div class="toggle">OTIMIZAÇÃO</div>
+    </div>
+
+    <!-- SEGURANÇA -->
+    <div class="tab">
+      <h3 style="color:red">SEGURANÇA</h3>
+      <input type="range" class="slider">
+    </div>
+
+    <!-- INJEÇÃO -->
+    <div class="tab">
+      <h3 style="color:red">INJEÇÃO</h3>
+      <div class="btn">ABRIR FREE FIRE</div>
+      <div class="btn">ABRIR FREE FIRE MAX</div>
+    </div>
+
+    <!-- INFO -->
+    <div class="tab">
+      <h3 style="color:red">INFORMAÇÕES</h3>
+      <p style="color:white">Criado por CENTRAL HACK</p>
+    </div>
+
+  </div>
 </div>
 
 <script>
-  const canvas = document.getElementById("matrix");
-  const ctx = canvas.getContext("2d");
-
-  canvas.height = window.innerHeight;
-  canvas.width = window.innerWidth;
-
-  const letters = "アイウエオカキクケコサシスセソ0123456789";
-  const fontSize = 16;
-  const columns = canvas.width / fontSize;
-
-  const drops = [];
-
-  for (let x = 0; x < columns; x++)
-    drops[x] = 1;
-
-  function draw() {
-    ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-    ctx.fillStyle = "#ff0000";
-    ctx.font = fontSize + "px monospace";
-
-    for (let i = 0; i < drops.length; i++) {
-      const text = letters.charAt(Math.floor(Math.random() * letters.length));
-      ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-
-      if (drops[i] * fontSize > canvas.height && Math.random() > 0.975)
-        drops[i] = 0;
-
-      drops[i]++;
-    }
+function entrar(){
+  let key = document.getElementById("key").value;
+  if(key === "#AUXÍLIOADIDAS"){
+    document.getElementById("login").style.display = "none";
+    document.getElementById("app").style.display = "block";
+  } else {
+    alert("Key inválida");
   }
+}
 
-  setInterval(draw, 33);
+function trocar(i){
+  let tabs = document.querySelectorAll(".tab");
+  tabs.forEach(t => t.classList.remove("active"));
+  tabs[i].classList.add("active");
+}
+
+/* MATRIX */
+const canvas = document.getElementById("matrix");
+const ctx = canvas.getContext("2d");
+
+canvas.height = window.innerHeight;
+canvas.width = window.innerWidth;
+
+const letters = "アイウエオ0123456789";
+const fontSize = 14;
+const columns = canvas.width/fontSize;
+
+const drops = [];
+for(let x=0;x<columns;x++) drops[x]=1;
+
+function draw(){
+  ctx.fillStyle="rgba(0,0,0,0.05)";
+  ctx.fillRect(0,0,canvas.width,canvas.height);
+
+  ctx.fillStyle="red";
+  ctx.font=fontSize+"px monospace";
+
+  for(let i=0;i<drops.length;i++){
+    let text=letters[Math.floor(Math.random()*letters.length)];
+    ctx.fillText(text,i*fontSize,drops[i]*fontSize);
+
+    if(drops[i]*fontSize>canvas.height && Math.random()>0.975)
+      drops[i]=0;
+
+    drops[i]++;
+  }
+}
+setInterval(draw,33);
 </script>
 
 </body>
