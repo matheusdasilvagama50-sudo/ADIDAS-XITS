@@ -24,28 +24,33 @@ canvas {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: #000;
-  border: 2px solid red;
-  box-shadow: 0 0 20px red;
-  padding: 30px;
+  background: #0a0000;
   border-radius: 20px;
+  padding: 25px;
+  box-shadow: 0 0 30px red;
+  border: 2px solid red;
   text-align: center;
 }
 
 .login input {
-  padding: 10px;
-  border-radius: 20px;
-  border: none;
   margin-top: 10px;
+  padding: 12px;
+  border-radius: 25px;
+  border: none;
+  width: 220px;
+  background: #111;
+  color: white;
 }
 
 .login button {
   margin-top: 10px;
-  padding: 10px;
+  padding: 12px;
+  width: 220px;
+  border-radius: 25px;
   border: none;
   background: red;
   color: white;
-  border-radius: 20px;
+  box-shadow: 0 0 15px red;
 }
 
 /* APP */
@@ -53,61 +58,110 @@ canvas {
   display: none;
 }
 
+/* BOX */
 .box {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: #120000;
-  border: 2px solid red;
-  box-shadow: 0 0 25px red;
+  width: 330px;
+  background: #0a0000;
   border-radius: 20px;
-  width: 300px;
+  border: 2px solid red;
+  box-shadow: 0 0 40px red;
   padding: 20px;
 }
 
-/* MENU */
+/* MENU LATERAL */
 .menu {
   position: absolute;
-  left: -50px;
-  top: 20px;
+  left: -55px;
+  top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
 .menu div {
-  margin: 10px 0;
-  width: 30px;
-  height: 30px;
-  background: #300;
+  width: 40px;
+  height: 40px;
+  background: #140000;
   border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 15px red;
   cursor: pointer;
 }
 
-/* TABS */
+/* TITULO */
+.title {
+  color: red;
+  margin-bottom: 15px;
+}
+
+/* TAB */
 .tab {
   display: none;
 }
-
 .tab.active {
   display: block;
 }
 
-.toggle {
-  background: #300;
-  padding: 10px;
-  margin: 10px 0;
+/* OPTION */
+.option {
+  background: #140000;
+  padding: 12px;
   border-radius: 20px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.slider {
+/* TOGGLE */
+.switch {
+  width: 40px;
+  height: 20px;
+  background: #333;
+  border-radius: 20px;
+  position: relative;
+  cursor: pointer;
+}
+
+.switch::after {
+  content: "";
+  width: 18px;
+  height: 18px;
+  background: white;
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  border-radius: 50%;
+  transition: 0.3s;
+}
+
+.switch.active {
+  background: red;
+}
+.switch.active::after {
+  left: 21px;
+}
+
+/* SLIDER */
+input[type=range] {
   width: 100%;
+  accent-color: red;
 }
 
+/* BOTÃO */
 .btn {
   background: red;
-  padding: 10px;
-  margin: 10px 0;
-  text-align: center;
+  padding: 12px;
   border-radius: 20px;
+  text-align: center;
+  margin-top: 10px;
+  box-shadow: 0 0 15px red;
   cursor: pointer;
 }
 </style>
@@ -130,52 +184,52 @@ canvas {
   <div class="box">
 
     <div class="menu">
-      <div onclick="trocar(0)"></div>
-      <div onclick="trocar(1)"></div>
-      <div onclick="trocar(2)"></div>
-      <div onclick="trocar(3)"></div>
-      <div onclick="trocar(4)"></div>
-      <div onclick="trocar(5)"></div>
+      <div onclick="trocar(0)">🎯</div>
+      <div onclick="trocar(1)">➕</div>
+      <div onclick="trocar(2)">☷</div>
+      <div onclick="trocar(3)">🛡️</div>
+      <div onclick="trocar(4)">⚔️</div>
+      <div onclick="trocar(5)">ℹ️</div>
     </div>
 
     <!-- AIMBOT -->
     <div class="tab active">
-      <h3 style="color:red">AIMBOT</h3>
-      <div class="toggle">Aimbot 89%</div>
-      <div class="toggle">Aumentar Precisão</div>
-      <input type="range" class="slider">
+      <div class="title">AIMBOT</div>
+      <div class="option">Aimbot 89% <div class="switch" onclick="toggle(this)"></div></div>
+      <div class="option">Aumentar Precisão <div class="switch" onclick="toggle(this)"></div></div>
+      <input type="range">
     </div>
 
     <!-- ARMA -->
     <div class="tab">
-      <h3 style="color:red">ARMA</h3>
-      <div class="toggle">Sem Recuo</div>
-      <div class="toggle">Precisão Avançada</div>
+      <div class="title">ARMA</div>
+      <div class="option">Sem Recuo <div class="switch" onclick="toggle(this)"></div></div>
+      <div class="option">Precisão Avançada <div class="switch" onclick="toggle(this)"></div></div>
     </div>
 
     <!-- DIVERSOS -->
     <div class="tab">
-      <h3 style="color:red">DIVERSOS</h3>
-      <div class="toggle">120 FPS</div>
-      <div class="toggle">OTIMIZAÇÃO</div>
+      <div class="title">DIVERSOS</div>
+      <div class="option">120 FPS <div class="switch" onclick="toggle(this)"></div></div>
+      <div class="option">OTIMIZAÇÃO <div class="switch" onclick="toggle(this)"></div></div>
     </div>
 
     <!-- SEGURANÇA -->
     <div class="tab">
-      <h3 style="color:red">SEGURANÇA</h3>
-      <input type="range" class="slider">
+      <div class="title">SEGURANÇA</div>
+      <input type="range">
     </div>
 
     <!-- INJEÇÃO -->
     <div class="tab">
-      <h3 style="color:red">INJEÇÃO</h3>
+      <div class="title">INJEÇÃO</div>
       <div class="btn">ABRIR FREE FIRE</div>
       <div class="btn">ABRIR FREE FIRE MAX</div>
     </div>
 
     <!-- INFO -->
     <div class="tab">
-      <h3 style="color:red">INFORMAÇÕES</h3>
+      <div class="title">INFORMAÇÕES</div>
       <p style="color:white">Criado por CENTRAL HACK</p>
     </div>
 
@@ -184,47 +238,47 @@ canvas {
 
 <script>
 function entrar(){
-  let key = document.getElementById("key").value;
-  if(key === "#AUXÍLIOADIDAS"){
-    document.getElementById("login").style.display = "none";
-    document.getElementById("app").style.display = "block";
-  } else {
-    alert("Key inválida");
-  }
+  if(document.getElementById("key").value === "#AUXÍLIOADIDAS"){
+    login.style.display="none";
+    app.style.display="block";
+  } else alert("Key inválida");
 }
 
 function trocar(i){
   let tabs = document.querySelectorAll(".tab");
-  tabs.forEach(t => t.classList.remove("active"));
+  tabs.forEach(t=>t.classList.remove("active"));
   tabs[i].classList.add("active");
 }
 
+function toggle(el){
+  el.classList.toggle("active");
+}
+
 /* MATRIX */
-const canvas = document.getElementById("matrix");
-const ctx = canvas.getContext("2d");
+const c=document.getElementById("matrix");
+const ctx=c.getContext("2d");
+c.width=window.innerWidth;
+c.height=window.innerHeight;
 
-canvas.height = window.innerHeight;
-canvas.width = window.innerWidth;
+const letters="アイウエオ0123456789";
+const size=14;
+const cols=c.width/size;
+let drops=[];
 
-const letters = "アイウエオ0123456789";
-const fontSize = 14;
-const columns = canvas.width/fontSize;
-
-const drops = [];
-for(let x=0;x<columns;x++) drops[x]=1;
+for(let i=0;i<cols;i++) drops[i]=1;
 
 function draw(){
   ctx.fillStyle="rgba(0,0,0,0.05)";
-  ctx.fillRect(0,0,canvas.width,canvas.height);
+  ctx.fillRect(0,0,c.width,c.height);
 
   ctx.fillStyle="red";
-  ctx.font=fontSize+"px monospace";
+  ctx.font=size+"px monospace";
 
   for(let i=0;i<drops.length;i++){
     let text=letters[Math.floor(Math.random()*letters.length)];
-    ctx.fillText(text,i*fontSize,drops[i]*fontSize);
+    ctx.fillText(text,i*size,drops[i]*size);
 
-    if(drops[i]*fontSize>canvas.height && Math.random()>0.975)
+    if(drops[i]*size>c.height && Math.random()>0.975)
       drops[i]=0;
 
     drops[i]++;
